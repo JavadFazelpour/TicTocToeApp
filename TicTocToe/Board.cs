@@ -23,7 +23,17 @@ namespace TicTocToe
                 _board[i] = "-";
             }
         }
-
+        public bool WinConditionCheck()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (_board[i] == _board[i + 3] && _board[i + 3] == _board[i + 6]) return true;
+                if (_board[3 * i] == _board[3 * i + 1] && _board[3 * i + 1] == _board[3 * i + 2]) return true;
+            }
+            if (_board[0] == _board[4] && _board[4] == _board[8]) return true;
+            if (_board[2] == _board[4] && _board[4] == _board[6]) return true;
+            return false;
+        }
         public void PrintBoard()
         {
             for (int i = 0; i < _board.Length; i++)
