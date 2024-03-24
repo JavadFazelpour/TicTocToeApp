@@ -9,41 +9,45 @@ namespace TicTocToe
 {
     internal class Board
     {
-        private string[] _board;
+        private Tile[,] board;
         public Board()
         {
-            _board = new string[9];
+            board = new Tile[3, 3];
             InitializeBoard();
         }
 
         private void InitializeBoard()
         {
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 3; i++)
             {
-                _board[i] = "-";
+                for (int j = 0; j < 3; j++)
+                {
+                    board[i, j] = new Tile(Marks.Empty);
+                }
+
             }
         }
         public bool WinConditionCheck()
         {
             for (int i = 0; i < 3; i++)
             {
-                if (_board[i] == _board[i + 3] && _board[i + 3] == _board[i + 6]) return true;
-                if (_board[3 * i] == _board[3 * i + 1] && _board[3 * i + 1] == _board[3 * i + 2]) return true;
+                if (board[i, 0].Mark == board[i, 1].Mark && board[i, 1].Mark == board[i, 2].Mark) return true;
+                if (board[0, i].Mark == board[1, i].Mark && board[1, i].Mark == board[2, i].Mark) return true;
             }
-            if (_board[0] == _board[4] && _board[4] == _board[8]) return true;
-            if (_board[2] == _board[4] && _board[4] == _board[6]) return true;
+            if (board[0, 0].Mark == board[1, 1].Mark && board[1, 1].Mark == board[2, 2].Mark) return true;
+            if (board[0, 2].Mark == board[1, 1].Mark && board[1, 1].Mark == board[2, 0].Mark) return true;
             return false;
         }
+        //Maybe PrintBoard() is not related to Board class and should be in a View class (MVC)
         public void PrintBoard()
         {
-            for (int i = 0; i < _board.Length; i++)
+            for (int i = 0; i < 3; i++)
             {
-                Console.Write($"|  {_board[i]}  ");
-                if (i % 3 == 2)
+                for (int j = 0; j < 3; j++)
                 {
-                    Console.WriteLine("|");
-                    Console.WriteLine();
+                    Console.Write($"|  {board[i, j].Mark}  ");
                 }
+                Console.WriteLine("|");
             }
         }
 
