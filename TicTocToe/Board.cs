@@ -45,7 +45,15 @@ namespace TicTocToe
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    Console.Write($"|  {board[i, j].Mark}  ");
+                    if (board[i, j].Mark == Marks.Empty)
+                    {
+                        Console.Write($"|  -  ");
+                    }
+
+                    else
+                    {
+                        Console.WriteLine($"|  {board[i, j].Mark}  ");
+                    }
                 }
                 Console.WriteLine("|");
             }
