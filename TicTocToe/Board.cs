@@ -52,10 +52,18 @@ namespace TicTocToe
 
                     else
                     {
-                        Console.WriteLine($"|  {board[i, j].Mark}  ");
+                        Console.Write($"|  {board[i, j].Mark}  ");
                     }
                 }
                 Console.WriteLine("|");
+            }
+        }
+
+        public void AddMark(int row, int column, Marks mark)
+        {
+            if (board[row - 1, column - 1].Mark == Marks.Empty)
+            {
+                board[row - 1, column - 1].Mark = mark;
             }
         }
 
